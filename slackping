@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "${HOSTNAME} is checking availability..."
+ping -c 1 $1 &> /dev/null && text="$1 is available." || text="$1 is not available. check $1 or ${HOSTNAME}"
+
+escapedText=$(echo $text | sed 's/"/\"/g' | sed "s/'/\'/g" )
+json="{\"text\": \"$escapedText\"}"
+
+
+webhook=$2
+
+if [[ $webhook = "" ]];then
+   echo "webhook is not specified."
+   exit
+fi
+
+curl -X POST --data-urlencode "payload=$json" $webhook
