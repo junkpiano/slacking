@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "${HOSTNAME} is checking availability..."
-ping -c 1 $1 &> /dev/null && text="$1 is available." || text="$1 is not available. check $1 or ${HOSTNAME}"
+ping -c 1 $1 &> /dev/null && text="$1 is available on ${HOSTNAME}." || text="$1 is not available. check $1 or ${HOSTNAME}"
 
 escapedText=$(echo $text | sed 's/"/\"/g' | sed "s/'/\'/g" )
 json="{\"text\": \"$escapedText\"}"
