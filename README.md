@@ -1,5 +1,7 @@
 # slackping
 
+Tell Slack the result of Ping.
+
 ## Usage
 
 ```bash
